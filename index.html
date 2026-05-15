@@ -12,9 +12,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     
     <!-- Librería de Íconos (Phosphor Icons) -->
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script defer src="https://unpkg.com/@phosphor-icons/web"></script>
 
-    <!-- Enlace al archivo CSS -->
+    <!-- Conexión al archivo CSS -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -22,7 +22,7 @@
     <!-- Menú Superior / Header Sticky -->
     <header id="main-header">
         <div class="container header-content">
-            <!-- Izquierda: Contacto -->
+            <!-- Contacto -->
             <div class="header-contact">
                 <a href="tel:+56900000000" title="Llámanos">
                     <i class="ph-light ph-phone"></i> 
@@ -34,11 +34,15 @@
                 </a>
             </div>
 
-            <!-- Centro: Logo -->
+            <!-- Logo -->
             <div class="logo">AUREA</div>
 
-            <!-- Derecha: Perfil -->
-            <div class="header-user">
+            <!-- Perfil y Favoritos -->
+            <div class="header-user" style="display: flex; gap: 16px; align-items: center;">
+                <a href="#coleccion" title="Mis Favoritos" style="position: relative;">
+                    <i class="ph-light ph-heart"></i>
+                    <span id="contador-fav" class="badge-count">0</span>
+                </a>
                 <a href="#mi-cuenta" title="Mi Cuenta">
                     <i class="ph-light ph-user"></i>
                 </a>
@@ -46,10 +50,9 @@
         </div>
     </header>
 
-    <!-- Contenido Principal -->
     <main>
         <!-- Sección 1: Hero -->
-        <section class="hero">
+        <section class="hero fade-in-section">
             <div class="container">
                 <div class="hero-content">
                     <h1>La Elegancia Que No Necesita Palabras.</h1>
@@ -60,79 +63,56 @@
         </section>
 
         <!-- Sección 2: Propuesta de Valor -->
-        <section class="benefits">
+        <section class="benefits fade-in-section">
             <div class="container benefits-grid">
-                <div class="benefit-item reveal fade-up">
+                <div class="benefit-item">
                     <h3>Oro Sólido de 18k</h3>
                     <p>Diseñado para durar generaciones, sin perder jamás su brillo original ni oxidarse con el paso del tiempo.</p>
                 </div>
-                <div class="benefit-item reveal fade-up delay-1">
+                <div class="benefit-item">
                     <h3>Diamantes Éticos</h3>
                     <p>Cada gema es seleccionada a mano y cuenta con certificación de conflicto cero, respetando nuestro planeta.</p>
                 </div>
-                <div class="benefit-item reveal fade-up delay-2">
+                <div class="benefit-item">
                     <h3>Garantía Vitalicia</h3>
                     <p>Confiamos tanto en nuestros maestros artesanos que tu pieza está protegida de por vida, sin preguntas.</p>
                 </div>
             </div>
         </section>
 
-        <!-- Sección 3: Galería de Colección -->
-        <section id="coleccion" class="collection">
+        <!-- Sección 3: Galería de Colección Dinámica -->
+        <section id="coleccion" class="collection fade-in-section">
             <div class="container">
-                <div class="section-header reveal fade-up">
+                <div class="section-header">
                     <h2>Colección Herencia</h2>
                     <p>Piezas meticulosamente creadas para mujeres que definen su propio estándar de lujo.</p>
                 </div>
                 
-                <div class="collection-grid">
-                    <!-- Producto 1: Anillo -->
-                    <div class="product-card reveal fade-up">
-                        <div class="img-wrapper">
-                            <span class="badge badge-dark">Última Pieza</span>
-                            <img src="https://images.pexels.com/photos/248077/pexels-photo-248077.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Anillo Aurea" class="product-image">
-                        </div>
-                        <h4 class="product-title">Anillo Eternidad</h4>
-                        <p class="product-price">$1.250.000 CLP</p>
-                    </div>
-
-                    <!-- Producto 2: Gargantilla -->
-                    <div class="product-card reveal fade-up delay-1">
-                        <div class="img-wrapper">
-                            <span class="badge badge-gold">Más Vendido</span>
-                            <img src="https://images.pexels.com/photos/177332/pexels-photo-177332.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Collar Aurea" class="product-image">
-                        </div>
-                        <h4 class="product-title">Gargantilla Alba</h4>
-                        <p class="product-price">$890.000 CLP</p>
-                    </div>
-
-                    <!-- Producto 3: Pendientes -->
-                    <div class="product-card reveal fade-up delay-2">
-                        <div class="img-wrapper">
-                            <img src="https://images.pexels.com/photos/1413420/pexels-photo-1413420.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Pendientes Aurea" class="product-image">
-                        </div>
-                        <h4 class="product-title">Pendientes Constelación</h4>
-                        <p class="product-price">$1.400.000 CLP</p>
-                    </div>
+                <!-- Filtros UI -->
+                <div class="filtros-container">
+                    <button class="btn-filtro active" data-categoria="todos">Ver Todo</button>
+                    <button class="btn-filtro" data-categoria="anillos">Anillos</button>
+                    <button class="btn-filtro" data-categoria="collares">Collares</button>
+                    <button class="btn-filtro" data-categoria="pendientes">Pendientes</button>
                 </div>
+
+                <!-- Contenedor Vacío: JS inyectará las tarjetas aquí -->
+                <div class="collection-grid" id="catalogo-joyas"></div>
                 
-                <div style="text-align: center; margin-top: 80px;" class="reveal fade-up">
-                    <a href="#" class="btn-primary btn-secondary">Ver Todo El Catálogo</a>
-                </div>
             </div>
         </section>
 
         <!-- Sección 4: Prueba Social -->
-        <section class="social-proof">
-            <div class="container reveal fade-up">
+        <section class="social-proof fade-in-section">
+            <div class="container">
                 <p class="quote">"No es solo una joya, es una declaración de intenciones. La atención al detalle de Aurea superó todas mis expectativas de lo que significa la alta joyería."</p>
                 <p class="author">— Elena V., Clienta Exclusiva</p>
             </div>
         </section>
 
         <!-- Sección 5: Preguntas Frecuentes (FAQ) -->
-        <section class="faq-section">
-            <div class="container reveal fade-up">
+        <section class="faq-section fade-in-section">
+            <div class="container">
                 <div class="section-header">
                     <h2>Preguntas Frecuentes</h2>
                     <p>Todo lo que necesitas saber antes de adquirir tu pieza AUREA.</p>
@@ -142,52 +122,53 @@
                     <details class="faq-item">
                         <summary>¿Cómo puedo saber la talla de mi anillo?</summary>
                         <div class="faq-content">
-                            <p>Contamos con una guía de tallas imprimible. Si tienes dudas, contáctanos por WhatsApp y una de nuestras asesoras te ayudará a medir tu dedo desde casa con precisión milimétrica.</p>
+                            <p>Contamos con una guía de tallas imprimible. Si tienes dudas, contáctanos por WhatsApp y te ayudaremos.</p>
                         </div>
                     </details>
-
                     <details class="faq-item">
                         <summary>¿Realizan envíos a regiones en Chile?</summary>
                         <div class="faq-content">
-                            <p>Sí, realizamos envíos a todo Chile mediante couriers de alta seguridad. Cada paquete viaja 100% asegurado por el valor total de la joya hasta que llega a tus manos.</p>
+                            <p>Sí, realizamos envíos a todo Chile mediante couriers de alta seguridad. Viaja 100% asegurado.</p>
                         </div>
                     </details>
-
                     <details class="faq-item">
                         <summary>¿Las piezas tienen certificado de autenticidad?</summary>
                         <div class="faq-content">
-                            <p>Absolutamente. Cada joya AUREA se entrega con un certificado físico y digital que garantiza la pureza del Oro 18k y la procedencia ética de nuestros diamantes y gemas.</p>
+                            <p>Absolutamente. Cada joya AUREA se entrega con un certificado físico y digital.</p>
                         </div>
                     </details>
                 </div>
             </div>
         </section>
 
-        <!-- Sección 6: Formulario de Suscripción (Newsletter) -->
-        <section class="newsletter-section">
-            <div class="container reveal fade-up">
+        <!-- Sección 6: Formulario de Suscripción -->
+        <section class="newsletter-section fade-in-section">
+            <div class="container">
                 <div class="newsletter-content">
                     <div class="newsletter-text">
                         <h2>El Club Privado AUREA</h2>
-                        <p>Únete a nuestro selecto círculo. Recibe acceso anticipado a piezas de edición limitada, invitaciones a eventos privados y asesoría de estilo personalizada.</p>
+                        <p>Únete a nuestro selecto círculo. Recibe acceso anticipado a piezas de edición limitada.</p>
                     </div>
                     
-                    <form action="#" method="POST" class="newsletter-form" onsubmit="event.preventDefault(); alert('¡Bienvenida al Club Privado AUREA! Revisa tu correo para confirmar tu suscripción.');">
+                    <form id="form-newsletter" class="newsletter-form">
                         <div class="input-group">
                             <i class="ph-light ph-envelope-simple input-icon"></i>
-                            <input type="email" id="email-club" name="email" placeholder="Tu correo electrónico..." required autocomplete="email">
+                            <input type="email" id="email-club" name="email" placeholder="Tu correo electrónico..." autocomplete="email">
                             <button type="submit" class="btn-submit">
                                 Suscribirme <i class="ph-bold ph-arrow-right"></i>
                             </button>
                         </div>
-                        <p class="privacy-note">Al suscribirte, aceptas nuestras Políticas de Privacidad. Nunca compartiremos tus datos.</p>
+                        <p class="privacy-note">Al suscribirte, aceptas nuestras Políticas de Privacidad.</p>
+                        
+                        <!-- Mensajes devueltos por JS (Prevención XSS) -->
+                        <p id="mensaje-newsletter" style="margin-top: 15px; font-weight: 500; font-size: 0.95rem;"></p>
                     </form>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Pie de Página / Footer -->
+    <!-- Pie de Página -->
     <footer>
         <div class="container">
             <span class="footer-logo">AUREA</span>
@@ -198,7 +179,6 @@
                 <span><i class="ph-light ph-shield-check"></i> Pagos Seguros</span>
             </div>
             
-            <!-- Confianza Visual: Logos de Pago -->
             <div class="payment-methods">
                 <span title="Webpay Plus"><i class="ph-light ph-credit-card"></i> Webpay Plus</span>
                 <span title="Visa"><i class="ph-light ph-visa-logo"></i> Visa</span>
@@ -206,51 +186,16 @@
                 <span title="Mercado Pago"><i class="ph-light ph-handshake"></i> Mercado Pago</span>
             </div>
 
-            <!-- Contacto -->
-            <div style="margin-bottom: 32px; font-size: 0.9rem; color: #666;">
-                <p>¿Necesitas asesoría personalizada?</p>
-                <p>Llámanos: <a href="tel:+56900000000" style="color: #1A1A1A; font-weight: 500;">+56 9 0000 0000</a> | Correo: <a href="mailto:contacto@aurea.cl" style="color: #1A1A1A; font-weight: 500;">contacto@aurea.cl</a></p>
-            </div>
-
-            <p class="copyright">&copy; 2024 AUREA Joyería Chile. Todos los derechos reservados. Proyecto Académico.</p>
+            <p class="copyright">&copy; 2024 AUREA Joyería Chile. Proyecto Académico.</p>
         </div>
     </footer>
 
-    <!-- Botón Flotante de WhatsApp -->
-    <a href="https://wa.me/56900000000?text=Hola,%20busco%20asesoría%20privada%20sobre%20una%20joya%20Aurea." class="whatsapp-float" target="_blank" aria-label="Contactar por WhatsApp">
+    <!-- WhatsApp Flotante -->
+    <a href="https://wa.me/56900000000" class="whatsapp-float" target="_blank">
         <i class="ph-fill ph-whatsapp-logo"></i>
     </a>
 
-    <!-- SCRIPT: Menú Sticky y Scroll Reveal -->
-    <script>
-        // Efecto Glassmorphism Menu
-        const header = document.getElementById('main-header');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-
-        // Animaciones Scroll Reveal
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.15 
-        };
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    observer.unobserve(entry.target); 
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.reveal').forEach((element) => {
-            observer.observe(element);
-        });
-    </script>
+    <!-- Conexión al archivo JS -->
+    <script src="script.js"></script>
 </body>
 </html>
